@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dashboard Kehadiran Siswa - Kelas XII-A</title>
+<style>
+:root{--bg:#EEF2F8;--dk:#632523;--lt:#D99694;--tot:#953735;--navy:#1F3864;--bd:#BFC7D5;--h:#2E7D32;--s:#EF8F00;--i:#1E88E5;--a:#D32F2F;--t:#00796b;--hb:#E3F2E5;--sb:#FFF3D6;--ib:#DDEBFA;--ab:#FBE0E0;--tb:#DDF1EE;--wk:#E9ECF1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#000;font-family:Arial,Helvetica,sans-serif;font-size:14px}
+.w{max-width:1100px;margin:0 auto;padding:12px}
+.hd{background:var(--dk);color:#fff;text-align:center;padding:14px 10px 10px}
+.hd h1{margin:0;font-size:24px}.hd p{margin:0;font-size:13px}.sub{background:var(--lt);color:#fff;text-align:center;font-size:13px;padding:8px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:#fff;padding:8px 12px;font-size:13px;font-weight:bold;color:var(--navy)}
+.bar b.d{color:#C62828;font-size:14px;cursor:pointer;margin-left:4px}.bar b.u{color:var(--h)}
+.bar input{font:inherit;font-weight:normal;padding:4px 8px;border:1px solid var(--bd);border-radius:4px}
+.tabs{display:flex;gap:4px;margin:10px 0}.tabs button{font:inherit;border:1px solid var(--bd);background:#fff;padding:6px 16px;cursor:pointer;color:var(--navy);font-weight:bold}
+.tabs button.on{background:var(--dk);color:#fff;border-color:var(--dk)}
+.k{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.kc{text-align:center;cursor:pointer;color:#555;font-size:11px}.kc:hover{filter:brightness(.95)}
+.kc b{display:block;color:#fff;font-size:12px;padding:5px}.kc strong{display:block;font-size:34px;padding:10px 0 2px}.kc small{display:block;padding:4px 4px 10px;font-size:11px}
+.note{background:#FFF8E1;color:#7A5C00;font-weight:bold;text-align:center;padding:10px;font-size:13px}
+.g{display:grid;grid-template-columns:2fr 1fr;gap:0 12px;margin-top:10px}.g2{grid-template-columns:1fr 1fr}
+@media(max-width:760px){.g,.g2{grid-template-columns:1fr}}
+.c{background:#fff;border:1px solid #D9D9D9;min-width:0;margin-bottom:10px}
+.c h2{margin:0;padding:8px 12px;font-size:13px;background:var(--dk);color:#fff}.c h2.l{background:var(--lt)}.cb{padding:10px}
+.ch{display:flex;align-items:flex-end;gap:2px;height:190px;border-bottom:1px solid #878787;background:repeating-linear-gradient(to top,#ddd 0 1px,transparent 1px 20%)}
+.ch div{flex:1;display:flex;flex-direction:column-reverse;height:100%;justify-content:flex-start;cursor:pointer}.ch div:hover{background:#fbe0e0aa}.ch div.sel{background:#FBE0E0}
+.ch i{display:block;width:100%}.lb{display:flex;gap:2px;font-size:9px;color:#333}.lb span{flex:1;text-align:center;cursor:pointer}.lb span.sel{font-weight:bold;color:#C62828}
+.lg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;margin-top:8px;justify-content:center}.lg span{cursor:pointer}.lg u{display:inline-block;width:10px;height:10px;margin-right:4px;text-decoration:none}
+.dn{width:170px;height:170px;border-radius:50%;margin:10px auto;position:relative;cursor:pointer}.dn:after{content:"";position:absolute;inset:38px;background:#fff;border-radius:50%}
+.sc{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:5px 8px;border:1px solid var(--bd);text-align:left;white-space:nowrap}th{background:var(--lt);color:var(--navy);text-align:center;font-size:11px}td.c{text-align:center}
+tr.tot td{background:var(--tot);font-weight:bold}tr.cl:hover td{background:#f4f6fa}a.n{cursor:pointer;color:#1F3864}a.n:hover{text-decoration:underline}
+.p{padding:2px 8px;font-weight:bold;font-size:12px;display:inline-block;min-width:54px;text-align:center}
+.rk{margin-top:6px}.rk>h2{margin:0;padding:8px 12px;font-size:13px;background:var(--dk);color:#fff}
+.rk .k .kc{background:#fff;border:1px solid var(--bd);color:#000}.rk .kc b{background:var(--lt);font-size:11px}.rk .kc strong{color:var(--navy);font-size:26px;padding:12px 0}
+.ab td,.ab th{text-align:center;padding:3px 5px}.ab td:nth-child(2),.ab th:nth-child(2){text-align:left;position:sticky;left:0;background:#fff}.ab th:nth-child(2){background:var(--lt)}
+.ab .wk{background:var(--wk)}.ab .sel{outline:2px solid #F57C00;outline-offset:-2px}.ab td.g{cursor:pointer}
+.f{margin:10px 0;font-size:11px;color:#666;text-align:center;font-style:italic}
+#tt{position:fixed;z-index:30;background:#333;color:#fff;font:12px Arial,sans-serif;padding:5px 8px;border-radius:4px;pointer-events:none;display:none}
+#md{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;display:none;align-items:center;justify-content:center}
+#md.on{display:flex}.mb{background:#fff;width:min(620px,94vw);max-height:88vh;overflow:auto;border-radius:6px}
+.mh{background:var(--dk);color:#fff;font-weight:bold;font-size:14px;padding:10px 14px;display:flex;justify-content:space-between;gap:10px;position:sticky;top:0}.mh b{cursor:pointer;font-size:18px;line-height:14px}
+.mc{padding:12px 14px;font-size:12px}.mc td{font-size:12px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:8px 0}.cal div{border:1px solid var(--bd);border-radius:4px;padding:4px 2px;text-align:center;font-size:11px;min-height:34px}
+.cal .h{background:var(--lt);color:var(--navy);font-weight:bold;min-height:0}.cal .e{background:var(--wk);color:#999}.cal .g{cursor:pointer}.cal .sel{outline:2px solid #C62828}.cal b{display:block;font-size:13px}
+.sm{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}.sm span{padding:3px 10px;border-radius:5px;font-weight:bold}
+@page{size:A4 portrait;margin:8mm}
+@media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.tabs,.bar input,#md,#tt,#a{display:none!important}.w{max-width:none;padding:0;zoom:.8}}
+</style></head><body><div class="w">
+<div class="hd"><h1 id="t1"></h1></div><div class="sub" id="t2"></div>
+<div class="bar"><span>Tanggal Laporan: <b class="d" id="dd" data-a="dt"></b></span><label>Pilih tanggal: <input type="date" id="dt" value="2026-11-08" min="2026-11-01" max="2026-11-30"></label><span>Terakhir diperbarui: <b class="u">11/8/26 19:28</b></span></div>
+<div class="tabs"><button class="on" data-v="d">Dashboard</button><button data-v="a">Absensi</button></div>
+<div id="d"></div><div id="a" hidden></div>
+</div>
+<div id="tt"></div>
+<div id="md"><div class="mb"><div class="mh"><span id="mt"></span><b id="mx">&times;</b></div><div class="mc" id="mc"></div></div></div>
+<script>
+const S=[[2026001,"Ahmad Fauzi","L",".HHHHH..HHHHH..HHHHH..HHHHH..H"],[2026002,"Aisyah Putri","P",".HHHHH..SHHHH..HHHHH..HHHHH..H"],[2026003,"Budi Santoso","L",".HHHHH..HHHHH..HHHHH..SHHSH..H"],[2026004,"Bunga Lestari","P",".SSIHA..HHHHH..HHHHH..HHHHA..H"],[2026005,"Citra Dewi","P",".HHHHH..HIHHH..HHHHH..HHHHH..H"],[2026006,"Dian Anggraini","P",".HHHHH..HSSHH..HHHHH..HHHHH..H"],[2026007,"Dimas Pratama","L",".HHHHH..HHHHH..HHHHH..HHHHH..H"],[2026008,"Eko Prasetyo","L",".HHHHH..HHHHH..HHSHH..HHHHH..H"],[2026009,"Elsa Permata","P",".HIHHH..HHHHH..HHHHH..HHHHH..S"],[2026010,"Fajar Nugroho","L",".HHHHH..HHIHH..HHHIH..HHHHH..H"],[2026011,"Fitri Handayani","P",".HHHHH..HHHHH..HHHHH..HHHHH..S"],[2026012,"Galih Ramadhan","L",".AAAHH..HHHHH..HHHHH..HHHHA..H"],[2026013,"Gita Savitri","P",".HHHHH..HHSHH..HHHHH..IHHHH..H"],[2026014,"Hana Salsabila","P",".HHHHH..HHHHH..HHHHH..HHHHH..H"],[2026015,"Hendra Wijaya","L",".HHHHH..HHHHH..HHHHH..HHHHH..H"],[2026016,"Indah Permatasari","P",".HHHSH..HHHHH..SHHHH..HHHHH..H"],[2026017,"Ivan Kurniawan","L",".HHHHH..HHSHH..HSSHI..HHHHH..H"],[2026018,"Jasmine Azzahra","P",".HHHHH..HHHHH..HSHHH..HHHHH..H"],[2026019,"Joko Susilo","L",".HHHHH..HHHHH..HHHHH..HHHIH..H"],[2026020,"Kevin Aditya","L",".HHSHH..HHHHH..HHHHH..HHHHH..S"],[2026021,"Kirana Maharani","P",".IHHHH..HHHHH..IHHHH..HHHHH..H"],[2026022,"Lestari Ningsih","P",".HHHHH..HHHHH..HHHHH..HHHHH..H"],[2026023,"Lukman Hakim","L",".HHHHH..HHHHH..SHSHH..HSSHH..H"],[2026024,"Maya Sari","P",".HHHHH..HHHHH..HHHHH..HHHHH..H"],[2026025,"Muhammad Rizky","L",".HSHHH..HHHHH..HHHHH..HHHHH..H"],[2026026,"Nadia Rahmawati","P",".HHHHH..HHHHH..HHHHH..HHHHH..H"],[2026027,"Naufal Hidayat","L",".HHSHH..HHHHH..HHHHH..HHHHH..H"],[2026028,"Oscar Putra","L",".HHHHH..HHHHH..HHHHH..HHHHH..H"],[2026029,"Putri Amelia","P",".HHHHH..HHHHH..HHHHH..HHHSH..H"],[2026030,"Rafi Maulana","L",".HHHHH..HHHHH..HHHHH..AHHHH..H"]],N=S.length,TG=.95,$=id=>document.getElementById(id),pc=x=>Math.round(x*100)+"%";
+const M={kelas:"XII-A",sekolah:"SMAN 01 TANGERANG SELATAN",ta:"2026/2027",wali:"Vina Dirgahayu, S.Pd."};
+const HN=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],MG=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+const dow=d=>new Date(2026,10,d).getDay(),wk=d=>dow(d)%6==0;
+const C={H:"var(--h)",S:"var(--s)",I:"var(--i)",A:"var(--a)"},CL={H:"#4CAF50",S:"#F9A825",I:"#1E88E5",A:"#E53935"},BB={H:"--hb",S:"--sb",I:"--ib",A:"--ab"},NM={H:"Hadir",S:"Sakit",I:"Izin",A:"Alpa"};
+const BG={H:['#1B5E20','#C8E6C9'],S:['#7A5C00','#FFF59D'],I:['#0D47A1','#BBDEFB'],A:['#B71C1C','#FFCDD2']};
+let cur=8,touched=false;
+const tally=(d,f)=>{const t={H:0,S:0,I:0,A:0};S.forEach(s=>{if(!f||f(s)){const c=s[3][d-1];if(c in t)t[c]++}});return t};
+const sum=t=>t.H+t.S+t.I+t.A,cnt=(q,k)=>q.split(k).length-1;
+const badge=c=>c in BG?`<span class="p" style="color:${BG[c][0]};background:${BG[c][1]}">${NM[c]}</span>`:'<span style="color:#888">Belum diisi</span>';
+const idx=f=>S.map((s,i)=>i).filter(f),nm=i=>`<a class="n" data-a="s:${i}">${S[i][1]}</a>`;
+function render(){
+const d=cur,t=tally(d),n=sum(t),pct=n?t.H/n:0,sub=k=>n?Math.round(t[k]/n*100)+"% dari yang terisi":"belum ada data";
+$("t1").textContent="DASHBOARD KEHADIRAN SISWA - KELAS "+M.kelas;
+$("t2").textContent=M.sekolah+"  |  Tahun Ajaran "+M.ta+"  |  Wali Kelas: "+M.wali;
+$("dd").textContent=`${HN[dow(d)]}, ${d} November 2026`;$("dt").value="2026-11-"+String(d).padStart(2,"0");
+const card=(a,l,v,s,c,b)=>`<div class="kc" data-a="${a}" style="background:${b}"><b style="background:${c}">${l}</b><strong style="color:${c}">${v}</strong><small>${s}</small></div>`;
+let kp=card("k:T","TOTAL SISWA",N,"siswa terdaftar","var(--navy)","#DCE6F5");
+for(const k of "HSIA")kp+=card("k:"+k,NM[k].toUpperCase(),t[k],sub(k),C[k],`var(${BB[k]})`);
+kp+=card("k:P","% KEHADIRAN",(pct*100).toFixed(1)+"%",n?(pct>=TG?"Memenuhi":"Di bawah")+" target 95%":"belum ada data","var(--t)","var(--tb)");
+const st=wk(d)?"Tanggal laporan jatuh pada akhir pekan / hari libur":!n?"Absensi hari ini BELUM diisi - klik nama siswa untuk mengisi":n<N?`Absensi sebagian terisi (${n} dari ${N} siswa)`:`Absensi hari ini lengkap (${n} siswa terisi)`;
+let bars="",lb="";for(let i=1;i<=30;i++){const x=tally(i),sl=touched&&i==d?" sel":"";bars+=`<div class="${sl}" data-d="${i}">`+[..."HSIA"].map(k=>`<i style="height:${x[k]/N*100}%;background:${CL[k]}"></i>`).join("")+"</div>";lb+=`<span class="${sl}" data-d="${i}">${i}</span>`}
+const lg=[..."HSIA"].map(k=>`<span data-a="k:${k}"><u style="background:${CL[k]}"></u>${NM[k]}</span>`).join("");
+let a=0,cs=[];for(const k of "HSIA"){const e=a+(n?t[k]/n*360:0);cs.push(`${CL[k]} ${a}deg ${e}deg`);a=e}
+const dn=n?`conic-gradient(${cs.join(",")})`:"#fff;border:1px solid #D9D9D9";
+const ab=idx(i=>"SIA".includes(S[i][3][d-1]));
+let rows=ab.slice(0,10).map((i,k)=>{const c=S[i][3][d-1];return `<tr class="cl"><td class="c">${k+1}</td><td>${nm(i)}</td><td class="c">${S[i][2]}</td><td class="c">${badge(c)}</td></tr>`}).join("")||`<tr><td></td><td>${n?"Semua siswa hadir":"Absensi belum diisi"}</td><td></td><td></td></tr>`;
+if(ab.length>10)rows+=`<tr class="cl" data-a="k:X"><td colspan="4" class="c" style="cursor:pointer;font-style:italic">+ ${ab.length-10} siswa lainnya, klik untuk daftar lengkap</td></tr>`;
+const gr=["L","P"].map(j=>{const g=tally(d,s=>s[2]==j),tot=S.filter(s=>s[2]==j).length,td=g.S+g.I+g.A;return [j,j=="L"?"Laki-laki":"Perempuan",tot,g.H,td,g.H+td?g.H/(g.H+td):0]});
+const tt=gr.reduce((r,x)=>[r[0]+x[2],r[1]+x[3],r[2]+x[4]],[0,0,0]);
+const gt=gr.map(r=>`<tr class="cl" data-a="g:${r[0]}" style="cursor:pointer"><td>${r[1]}</td><td class="c">${r[2]}</td><td class="c">${r[3]}</td><td class="c">${r[4]}</td><td class="c">${pc(r[5])}</td></tr>`).join("")+`<tr class="tot" data-a="k:T" style="cursor:pointer"><td>Total</td><td class="c">${tt[0]}</td><td class="c">${tt[1]}</td><td class="c">${tt[2]}</td><td class="c">${pc(tt[1]+tt[2]?tt[1]/(tt[1]+tt[2]):0)}</td></tr>`;
+const at=S.map((s,i)=>{const q=s[3].slice(0,d),h=cnt(q,"H"),z=h+cnt(q,"S")+cnt(q,"I")+cnt(q,"A");return {i,a:cnt(q,"A"),p:z?h/z:0}}).filter(x=>x.a>0).sort((x,y)=>y.a-x.a||x.i-y.i).slice(0,5);
+const ar=at.map((x,k)=>`<tr class="cl"><td class="c">${k+1}</td><td>${nm(x.i)}</td><td class="c" style="color:#C62828;font-weight:bold">${x.a}</td><td class="c">${pc(x.p)}</td></tr>`).join("")||`<tr><td></td><td>Tidak ada siswa alpa</td><td></td><td></td></tr>`;
+let ef=0,T={H:0,S:0,I:0,A:0};for(let i=1;i<=d;i++){if(!wk(i))ef++;const x=tally(i);for(const k in T)T[k]+=x[k]}
+const ts=sum(T),mr=[["HARI EFEKTIF",ef],["TOTAL HADIR",T.H],["TOTAL SAKIT",T.S],["TOTAL IZIN",T.I],["TOTAL ALPA",T.A],["RATA-RATA % HADIR",(ts?T.H/ts*100:0).toFixed(1)+"%"]].map(r=>`<div class="kc" data-a="r"><b>${r[0]}</b><strong>${r[1]}</strong></div>`).join("");
+const pv=n?t:T,pt=sum(pv),pa=n?"k:":"r",lg2=[..."HSIA"].map(k=>`<span data-a="${n?"k:"+k:"r"}"><u style="background:${CL[k]}"></u>${NM[k]}${pt?" "+Math.round(pv[k]/pt*100)+"%":""}</span>`).join("");
+let pie='<svg viewBox="0 0 220 210" width="100%" style="max-width:260px;display:block;margin:6px auto">',pa0=-Math.PI/2;
+if(pt)for(const k of "HSIA"){const v=pv[k];if(!v)continue;const b=pa0+2*Math.PI*v/pt,m=(pa0+b)/2,R=90,X=110,Y=100,at=n?"k:"+k:"r";
+pie+=(v==pt?`<circle data-a="${at}" cx="${X}" cy="${Y}" r="${R}" fill="${CL[k]}" style="cursor:pointer"/>`:`<path data-a="${at}" style="cursor:pointer" d="M${X} ${Y}L${X+R*Math.cos(pa0)} ${Y+R*Math.sin(pa0)}A${R} ${R} 0 ${b-pa0>Math.PI?1:0} 1 ${X+R*Math.cos(b)} ${Y+R*Math.sin(b)}Z" fill="${CL[k]}" stroke="#fff" stroke-width="1"/>`)+(v/pt<.06?"":`<text x="${X+R*.62*Math.cos(m)}" y="${Y+R*.62*Math.sin(m)+4}" text-anchor="middle" font-size="13" fill="#000" style="pointer-events:none">${Math.round(v/pt*100)}%</text>`);pa0=b}
+pie+="</svg>";
+$("d").innerHTML=`<div class="k">${kp}</div><div class="note">${st}</div>
+<div class="g" style="margin-top:0"><div class="c"><h2 class="l">TREN KEHADIRAN HARIAN BULAN INI</h2><div class="cb"><div class="ch">${bars}</div><div class="lb">${lb}</div><div class="lg">${lg}</div></div></div>
+<div class="c"><h2>${n?"KOMPOSISI HARI INI":"KOMPOSISI S.D. TANGGAL LAPORAN"}</h2><div class="cb">${pie}<div class="lg">${lg2}</div></div></div></div>
+<div class="g g2"><div class="c"><h2>SISWA TIDAK HADIR HARI INI</h2><div class="sc"><table><tr><th>No</th><th>Nama Siswa</th><th>JK</th><th>Status</th></tr>${rows}</table></div></div>
+<div><div class="c"><h2>REKAP PER JENIS KELAMIN</h2><div class="sc"><table><tr><th>Kelompok</th><th>Total</th><th>Hadir</th><th>Tdk Hadir</th><th>% Hadir</th></tr>${gt}</table></div></div>
+<div class="c"><h2>SISWA PERLU PERHATIAN (ALPA TERBANYAK)</h2><div class="sc"><table><tr><th>No</th><th>Nama Siswa</th><th>Alpa</th><th>% Hadir</th></tr>${ar}</table></div></div></div></div>
+<div class="rk"><h2>RINGKASAN BULAN INI (s.d. tanggal laporan)</h2><div class="k">${mr}</div></div>`;
+let h="<tr><th>No</th><th>Nama Siswa</th><th>JK</th>";for(let i=1;i<=30;i++)h+=`<th class="${wk(i)?"wk":""}${i==d?" sel":""}" style="cursor:pointer" data-d="${i}">${MG[dow(i)]}<br>${i}</th>`;h+="<th>H</th><th>S</th><th>I</th><th>A</th><th>% Hadir</th></tr>";
+S.forEach((s,r)=>{h+=`<tr><td>${r+1}</td><td>${nm(r)}</td><td>${s[2]}</td>`;for(let i=1;i<=30;i++){const c=s[3][i-1],ok=NM[c];h+=`<td class="${wk(i)?"wk":"g"}${i==d?" sel":""}"${wk(i)?"":` data-a="e:${r}:${i}"`}${ok?` style="background:${BG[c][1]};color:${BG[c][0]};font-weight:bold"`:""}>${ok?c:""}</td>`}
+const q=s[3].slice(0,d),c=[..."HSIA"].map(k=>cnt(q,k)),z=c[0]+c[1]+c[2]+c[3];h+=c.map(x=>`<td>${x}</td>`).join("")+`<td>${z?pc(c[0]/z):""}</td></tr>`});
+$("a").innerHTML=`<div class="c"><h2>ABSENSI SISWA KELAS ${M.kelas} - NOVEMBER 2026</h2><div class="sc"><table class="ab">${h}</table></div></div>`}
+function modal(t,h){$("mt").textContent=t;$("mc").innerHTML=h;$("md").classList.add("on")}const close=()=>$("md").classList.remove("on");
+function listM(title,ix){modal(title+" - "+cur+" Nov 2026",`<table><tr><th>No</th><th>NIS</th><th>Nama Siswa</th><th>JK</th><th>Status</th></tr>${ix.map((i,k)=>`<tr><td class="c">${k+1}</td><td class="c">${S[i][0]}</td><td>${nm(i)}</td><td class="c">${S[i][2]}</td><td class="c">${badge(S[i][3][cur-1])}</td></tr>`).join("")||'<tr><td colspan="5" class="c">Tidak ada data</td></tr>'}</table><p style="color:#666">Klik nama siswa untuk melihat dan mengubah absensi.</p>`)}
+function stuM(i){const s=S[i],q=s[3].slice(0,cur),h=cnt(q,"H"),z=h+cnt(q,"S")+cnt(q,"I")+cnt(q,"A");let c='<div class="cal">'+MG.map(x=>`<div class="h">${x}</div>`).join("");
+for(let d=1;d<=30;d++){const v=s[3][d-1],w=wk(d);if(d==1)c+='<div style="border:0"></div>'.repeat(dow(1));c+=`<div class="${w?"e":"g"}${d==cur?" sel":""}" ${w?"":`data-a="e:${i}:${d}:m"`} ${v in BG?`style="background:${BG[v][1]};color:${BG[v][0]}"`:""}><b>${d}</b>${v in BG?v:"&nbsp;"}</div>`}
+modal(s[1],`<div>NIS ${s[0]} &middot; ${s[2]=="L"?"Laki-laki":"Perempuan"}</div><div class="sm"><span style="background:#C8E6C9;color:#1B5E20">Hadir ${h}</span><span style="background:#FFF59D;color:#7A5C00">Sakit ${cnt(q,"S")}</span><span style="background:#BBDEFB;color:#0D47A1">Izin ${cnt(q,"I")}</span><span style="background:#FFCDD2;color:#B71C1C">Alpa ${cnt(q,"A")}</span><span style="background:#eee">% Hadir ${z?Math.round(h/z*100):0}% (s.d. ${cur} Nov)</span></div>${c}</div><p style="color:#666">Klik tanggal untuk mengubah status: H, S, I, A, kosong. Dashboard ikut berubah.</p>`)}
+function pctM(){const r=S.map((s,i)=>{const q=s[3].slice(0,cur),h=cnt(q,"H"),z=h+cnt(q,"S")+cnt(q,"I")+cnt(q,"A");return{i,q,h,p:z?h/z:0,z}}).sort((a,b)=>a.p-b.p||a.i-b.i);
+modal("% Kehadiran per Siswa (s.d. "+cur+" Nov)",`<table><tr><th>No</th><th>Nama Siswa</th><th>H</th><th>S</th><th>I</th><th>A</th><th>% Hadir</th></tr>${r.map((x,k)=>`<tr><td class="c">${k+1}</td><td>${nm(x.i)}</td><td class="c">${x.h}</td><td class="c">${cnt(x.q,"S")}</td><td class="c">${cnt(x.q,"I")}</td><td class="c">${cnt(x.q,"A")}</td><td class="c"><b>${x.z?Math.round(x.p*100)+"%":"-"}</b></td></tr>`).join("")}</table>`)}
+function rekapM(){let r="";for(let d=1;d<=cur;d++){if(wk(d))continue;const t=tally(d),n=sum(t);r+=`<tr class="cl" data-a="d:${d}" style="cursor:pointer"><td class="c">${d}</td><td class="c">${HN[dow(d)]}</td><td class="c">${t.H}</td><td class="c">${t.S}</td><td class="c">${t.I}</td><td class="c">${t.A}</td><td class="c">${n?Math.round(t.H/n*100)+"%":"-"}</td></tr>`}
+modal("Rekap Harian s.d. "+cur+" Nov 2026",`<table><tr><th>Tgl</th><th>Hari</th><th>Hadir</th><th>Sakit</th><th>Izin</th><th>Alpa</th><th>% Hadir</th></tr>${r}</table><p style="color:#666">Klik baris untuk menjadikannya tanggal laporan.</p>`)}
+function act(a){const [t,x,y,m]=a.split(":");
+if(t=="k"){if(x=="P")return pctM();listM(x=="T"?"Semua Siswa":x=="X"?"Siswa Tidak Hadir":"Siswa "+NM[x],idx(i=>x=="T"||(x=="X"?"SIA".includes(S[i][3][cur-1]):S[i][3][cur-1]==x)))}
+else if(t=="g")listM(x=="L"?"Siswa Laki-laki":"Siswa Perempuan",idx(i=>S[i][2]==x));
+else if(t=="s")stuM(+x);
+else if(t=="e"){const i=+x,d=+y,o="HSIA.",s=S[i][3];S[i][3]=s.slice(0,d-1)+o[(o.indexOf(s[d-1])+1)%5]+s.slice(d);touched=true;render();if(m)stuM(i)}
+else if(t=="d"){cur=+x;touched=true;render();close()}
+else if(t=="r")rekapM();
+else if(t=="dt"){try{$("dt").showPicker()}catch(e){$("dt").focus()}}}
+document.addEventListener("click",e=>{if(e.target.id=="md"||e.target.id=="mx")return close();
+const a=e.target.closest("[data-a]");if(a)return act(a.dataset.a);
+const d=e.target.closest("[data-d]");if(d){cur=+d.dataset.d;touched=true;render()}});
+document.addEventListener("keydown",e=>{if(e.key=="Escape")close()});
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x==b));$("d").hidden=b.dataset.v!="d";$("a").hidden=b.dataset.v!="a"});
+$("dt").onchange=e=>{const v=+e.target.value.slice(8);if(v){cur=v;touched=true;render()}};
+document.addEventListener("mousemove",e=>{const d=e.target.closest&&e.target.closest(".ch [data-d]"),t=$("tt");if(d){const n=+d.dataset.d,x=tally(n);t.style.display="block";t.style.left=e.clientX+12+"px";t.style.top=e.clientY+12+"px";t.textContent=`${HN[dow(n)]}, ${n} Nov - Hadir ${x.H} | Sakit ${x.S} | Izin ${x.I} | Alpa ${x.A}`}else t.style.display="none"});
+render();
+</script></body></html>
